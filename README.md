@@ -51,6 +51,7 @@ hero note:  open source · use freely · give back if it lands
 part of the deiadora ecosystem
 → deiadora.com · node 0 · the field
 → drblexchange.com · node 2 · recognition
+→ quantummagic.ai · node 3 · discernment
 → iamdeiadora.com · node 4 · wave
 → techtuition.ai · node 7 · expression
 → thequantumceo.com · node 8 · structure
