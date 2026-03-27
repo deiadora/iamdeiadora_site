@@ -329,53 +329,99 @@
     .key-arc .transmute { color: var(--accent); font-weight: 500; font-style: normal; }
 
     /* ─── give back ─── */
-    .give-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
+.give-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
 
-    @media (max-width: 560px) { .give-grid { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .give-grid-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) { .give-grid-3 { grid-template-columns: 1fr; } }
 
-    .give-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--r);
-      padding: 1.8rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-      transition: border-color .2s;
-    }
+.give-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  transition: border-color .2s;
+}
 
-    .give-card:hover { border-color: var(--accent); }
+.give-card:hover { border-color: var(--accent); }
 
-    .give-card h3 {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -.01em;
-    }
+.give-card h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
 
-    .give-card p {
-      font-size: .88rem;
-      color: var(--muted);
-      line-height: 1.65;
-      flex: 1;
-    }
+.give-card p {
+  font-size: .88rem;
+  color: var(--muted);
+  line-height: 1.65;
+  flex: 1;
+}
 
-    .give-card a {
-      font-size: .82rem;
-      font-weight: 500;
-      color: var(--accent);
-      text-decoration: none;
-      letter-spacing: .02em;
-      margin-top: .4rem;
-    }
+.give-card a {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: .02em;
+  margin-top: .4rem;
+}
 
-    .give-card a:hover { opacity: .75; }
+.give-card a:hover { opacity: .75; }
 
+/* ─── share card ─── */
+.share-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 1.8rem 2rem;
+  transition: border-color .2s;
+}
+
+.share-card:hover { border-color: var(--accent); }
+
+.share-card h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  margin-bottom: .4rem;
+}
+
+.share-card p {
+  font-size: .88rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.share-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.share-row a {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: .02em;
+  transition: opacity .2s;
+}
+
+.share-row a:hover { opacity: .75; }
+    
     /* ─── footer ─── */
     .footer {
       margin-top: 5rem;
@@ -658,41 +704,40 @@
     </section>
 
     <!-- ─── give back ─── -->
-    <section id="give">
-      <p class="section-label">give back · if it lands</p>
-      <div class="give-grid">
+<section id="give">
+  <p class="section-label">give back · if it lands</p>
 
-        <div class="give-card">
-          <h3>Buy me a coffee</h3>
-          <p>Thirteen years of field research. If a key landed for you today — a small thank you goes a long way.</p>
-          <a href="https://buymeacoffee.com/deiadora" target="_blank" rel="noopener">buymeacoffee.com/deiadora →</a>
-        </div>
+  <div class="give-grid-3">
+    <div class="give-card">
+      <h3>Buy me a coffee</h3>
+      <p>Thirteen years of field research. If a key landed for you today — a small thank you goes a long way.</p>
+      <a href="https://buymeacoffee.com/deiadora" target="_blank" rel="noopener">buymeacoffee.com/deiadora →</a>
+    </div>
 
-        <div class="give-card">
-          <h3>Give $Minima</h3>
-          <p>If you're in the decentralised tech ecosystem and want to support the work on-chain — $Minima is welcome.</p>
-          <a href="https://minima.global" target="_blank" rel="noopener">learn about $Minima →</a>
-        </div>
+    <div class="give-card">
+      <h3>Give $Minima</h3>
+      <p>If you're in the decentralised tech ecosystem and want to support the work on-chain — $Minima is welcome.</p>
+      <a href="https://minima.global" target="_blank" rel="noopener">learn about $Minima →</a>
+    </div>
 
-        <div class="give-card">
-          <h3>Share the keys</h3>
-          <p>Open source means it grows by sharing. If these were useful — pass them on.</p>
-          <a href="#" onclick="toggleShare(event)">share iamdeiadora.com →</a>
-          <div id="share-options" style="display:none; margin-top:.6rem; display:flex; flex-direction:column; gap:.4rem;">
-          <a href="https://bsky.app/intent/compose?text=The+first+13+quantum+keys+—+open+source+transmutational+arcs+from+source+code+to+sovereignty.+https://iamdeiadora.com" target="_blank" rel="noopener" style="color:var(--accent);font-size:.78rem;text-decoration:none;">→ share on Bluesky</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://iamdeiadora.com" target="_blank" rel="noopener" style="color:var(--accent);font-size:.78rem;text-decoration:none;">→ share on LinkedIn</a>
-          <a href="mailto:?subject=The first 13 quantum keys&body=You already carry the architecture. https://iamdeiadora.com" style="color:var(--accent);font-size:.78rem;text-decoration:none;">→ share by email</a>
-          <a href="#" onclick="copyLink(event)" style="color:var(--accent);font-size:.78rem;text-decoration:none;" id="copy-link">→ copy link</a>
-       </div></div>
-    
+    <div class="give-card">
+      <h3>Collaborate</h3>
+      <p>Interested in the full 264 keys, licensing, or building Quantum Magic? Come find us.</p>
+      <a href="https://quantummagic.ai" target="_blank" rel="noopener">quantummagic.ai →</a>
+    </div>
+  </div>
 
-        <div class="give-card">
-          <h3>Collaborate</h3>
-          <p>Interested in the full 264 keys, licensing, or building Quantum Magic? Come find us.</p>
-          <a href="https://quantummagic.ai" target="_blank" rel="noopener">quantummagic.ai →</a>
-        </div>
-
-      </div>
+  <div class="share-card">
+    <h3>Share the keys</h3>
+    <p>Open source means it grows by sharing. If these were useful — pass them on.</p>
+    <div class="share-row">
+      <a href="https://bsky.app/intent/compose?text=The+first+13+quantum+keys+—+open+source+transmutational+arcs+from+source+code+to+sovereignty.+https://iamdeiadora.com" target="_blank" rel="noopener">share on Bluesky →</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://iamdeiadora.com" target="_blank" rel="noopener">share on LinkedIn →</a>
+      <a href="mailto:?subject=The first 13 quantum keys&body=You already carry the architecture. https://iamdeiadora.com">share by email →</a>
+      <a href="#" onclick="copyLink(event)" id="copy-link">copy link →</a>
+    </div>
+  </div>
+  
     </section>
 
     <footer class="footer">
@@ -716,18 +761,13 @@
       localStorage.setItem("theme-iamdeiadora", next);
       toggle.textContent = next === "dark" ? "🌙" : "☀️";
     });
-    function toggleShare(e) {
-  e.preventDefault();
-  const options = document.getElementById('share-options');
-  options.style.display = options.style.display === 'none' ? 'flex' : 'none';
-}
-
-function copyLink(e) {
+    
+   function copyLink(e) {
   e.preventDefault();
   navigator.clipboard.writeText('https://iamdeiadora.com').then(() => {
     const el = document.getElementById('copy-link');
-    el.textContent = '→ copied!';
-    setTimeout(() => el.textContent = '→ copy link', 2000);
+    el.textContent = 'copied! ✓';
+    setTimeout(() => el.textContent = 'copy link →', 2000);
   });
 }
   </script>
