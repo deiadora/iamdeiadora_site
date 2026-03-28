@@ -1,13 +1,3 @@
-# iamdeiadora.com
- 
-## github repo description
- 
-Node 4 · wave · the cube. The first 13 quantum keys — open source transmutational arcs from the sovereignty axis. Hover to reveal the full arc. Give back if it lands.
- 
----
- 
-## readme
- 
 # i am deiadora · wave · the cube
  
 > *You already carry the architecture.*
