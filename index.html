@@ -80,7 +80,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background .25s, color .25s; }
 
     /* ─── nav ─── */
     .nav {
@@ -294,7 +294,6 @@
       color: var(--muted);
     }
 
-    /* transmutation endpoint — always visible */
     .key-transmutation {
       font-family: var(--serif);
       font-size: 1.1rem;
@@ -303,7 +302,6 @@
       letter-spacing: -.01em;
     }
 
-    /* full arc — hidden by default, revealed on hover */
     .key-arc {
       font-size: .82rem;
       color: var(--muted);
@@ -322,106 +320,106 @@
       margin-top: .3rem;
     }
 
-    .key-arc .source { color: var(--muted); opacity: .7; }
-    .key-arc .arrow { color: var(--accent); margin: 0 .2rem; }
-    .key-arc .meta { color: var(--muted); }
-    .key-arc .arrow2 { color: var(--accent); margin: 0 .2rem; }
+    .key-arc .source   { color: var(--muted); opacity: .7; }
+    .key-arc .arrow    { color: var(--accent); margin: 0 .2rem; }
+    .key-arc .meta     { color: var(--muted); }
+    .key-arc .arrow2   { color: var(--accent); margin: 0 .2rem; }
     .key-arc .transmute { color: var(--accent); font-weight: 500; font-style: normal; }
 
     /* ─── give back ─── */
-.give-grid-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.2rem;
-  margin-bottom: 1.2rem;
-}
+    .give-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
 
-@media (max-width: 700px) { .give-grid-3 { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 420px) { .give-grid-3 { grid-template-columns: 1fr; } }
+    @media (max-width: 700px) { .give-grid-3 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 420px) { .give-grid-3 { grid-template-columns: 1fr; } }
 
-.give-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  padding: 1.8rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: .6rem;
-  transition: border-color .2s;
-}
+    .give-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.8rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      transition: border-color .2s;
+    }
 
-.give-card:hover { border-color: var(--accent); }
+    .give-card:hover { border-color: var(--accent); }
 
-.give-card h3 {
-  font-family: var(--serif);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -.01em;
-}
+    .give-card h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
 
-.give-card p {
-  font-size: .88rem;
-  color: var(--muted);
-  line-height: 1.65;
-  flex: 1;
-}
+    .give-card p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
 
-.give-card a {
-  font-size: .82rem;
-  font-weight: 500;
-  color: var(--accent);
-  text-decoration: none;
-  letter-spacing: .02em;
-  margin-top: .4rem;
-}
+    .give-card a {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: .02em;
+      margin-top: .4rem;
+    }
 
-.give-card a:hover { opacity: .75; }
+    .give-card a:hover { opacity: .75; }
 
-/* ─── share card ─── */
-.share-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  padding: 1.8rem 2rem;
-  transition: border-color .2s;
-}
+    /* ─── share card ─── */
+    .share-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 1.8rem 2rem;
+      transition: border-color .2s;
+    }
 
-.share-card:hover { border-color: var(--accent); }
+    .share-card:hover { border-color: var(--accent); }
 
-.share-card h3 {
-  font-family: var(--serif);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -.01em;
-  margin-bottom: .4rem;
-}
+    .share-card h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -.01em;
+      margin-bottom: .4rem;
+    }
 
-.share-card p {
-  font-size: .88rem;
-  color: var(--muted);
-  line-height: 1.65;
-  margin-bottom: 1rem;
-}
+    .share-card p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
 
-.share-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-}
+    .share-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
 
-.share-row a {
-  font-size: .82rem;
-  font-weight: 500;
-  color: var(--accent);
-  text-decoration: none;
-  letter-spacing: .02em;
-  transition: opacity .2s;
-}
+    .share-row a {
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: .02em;
+      transition: opacity .2s;
+    }
 
-.share-row a:hover { opacity: .75; }
-    
+    .share-row a:hover { opacity: .75; }
+
     /* ─── footer ─── */
     .footer {
       margin-top: 5rem;
@@ -459,7 +457,7 @@
       <a href="#keys">the keys</a>
       <a href="#podcast">podcast</a>
       <a href="#give">give back</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="toggle theme">🌙</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="toggle colour mode">🌙</button>
     </nav>
   </header>
 
@@ -510,7 +508,7 @@
           They are offered here as open source: available to any human or system
           that wishes to use them, regardless of status.
           The full 264 are the subject of ongoing research and collaboration.
-          See <a href="https://quantummagic.com" style="color:var(--accent);text-decoration:none;">Quantum Magic</a>
+          See <a href="https://quantummagic.ai" style="color:var(--accent);text-decoration:none;">Quantum Magic</a>
           if you want to help build what comes next.
         </p>
       </div>
@@ -704,40 +702,40 @@
     </section>
 
     <!-- ─── give back ─── -->
-<section id="give">
-  <p class="section-label">does it land? give back</p>
+    <section id="give">
+      <p class="section-label">does it land? give back</p>
 
-  <div class="give-grid-3">
-    <div class="give-card">
-      <h3>Buy me a coffee</h3>
-      <p>Thirteen years of field research. If a key landed for you today — a small thank you goes a long way.</p>
-      <a href="https://buymeacoffee.com/deiadora" target="_blank" rel="noopener">buymeacoffee.com/deiadora →</a>
-    </div>
+      <div class="give-grid-3">
+        <div class="give-card">
+          <h3>Buy me a coffee</h3>
+          <p>Thirteen years of field research. If a key landed for you today — a small thank you goes a long way.</p>
+          <a href="https://buymeacoffee.com/deiadora" target="_blank" rel="noopener">buymeacoffee.com/deiadora →</a>
+        </div>
 
-    <div class="give-card">
-      <h3>Give $Minima</h3>
-      <p>If you're in the decentralised tech ecosystem and want to support the work on-chain — $Minima is welcome.</p>
-      <a href="https://minima.global" target="_blank" rel="noopener">learn about $Minima →</a>
-    </div>
+        <div class="give-card">
+          <h3>Give $Minima</h3>
+          <p>If you're in the decentralised tech ecosystem and want to support the work on-chain — $Minima is welcome.</p>
+          <a href="https://minima.global" target="_blank" rel="noopener">learn about $Minima →</a>
+        </div>
 
-    <div class="give-card">
-      <h3>Collaborate</h3>
-      <p>Interested in the full 264 keys, licensing, or building Quantum Magic? Come find us.</p>
-      <a href="https://quantummagic.ai" target="_blank" rel="noopener">quantummagic.ai →</a>
-    </div>
-  </div>
+        <div class="give-card">
+          <h3>Collaborate</h3>
+          <p>Interested in the full 264 keys, licensing, or building Quantum Magic? Come find us.</p>
+          <a href="https://quantummagic.ai" target="_blank" rel="noopener">quantummagic.ai →</a>
+        </div>
+      </div>
 
-  <div class="share-card">
-    <h3>Share the keys</h3>
-    <p>Open source means it grows by sharing. If these were useful — pass them on.</p>
-    <div class="share-row">
-      <a href="https://bsky.app/intent/compose?text=The+first+13+quantum+keys+—+open+source+transmutational+arcs+from+source+code+to+sovereignty.+https://iamdeiadora.com" target="_blank" rel="noopener">share on Bluesky →</a>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://iamdeiadora.com" target="_blank" rel="noopener">share on LinkedIn →</a>
-      <a href="mailto:?subject=The first 13 quantum keys&body=You already carry the architecture. https://iamdeiadora.com">share by email →</a>
-      <a href="#" onclick="copyLink(event)" id="copy-link">copy link →</a>
-    </div>
-  </div>
-  
+      <div class="share-card">
+        <h3>Share the keys</h3>
+        <p>Open source means it grows by sharing. If these were useful — pass them on.</p>
+        <div class="share-row">
+          <a href="https://bsky.app/intent/compose?text=The+first+13+quantum+keys+—+open+source+transmutational+arcs+from+source+code+to+sovereignty.+https://iamdeiadora.com" target="_blank" rel="noopener">share on Bluesky →</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://iamdeiadora.com" target="_blank" rel="noopener">share on LinkedIn →</a>
+          <a href="mailto:?subject=The first 13 quantum keys&body=You already carry the architecture. https://iamdeiadora.com">share by email →</a>
+          <a href="#" onclick="copyLink(event)" id="copy-link">copy link →</a>
+        </div>
+      </div>
+
     </section>
 
     <footer class="footer">
@@ -749,27 +747,58 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-    const toggle = document.getElementById("themeToggle");
-    const saved = localStorage.getItem("theme-iamdeiadora") || "light";
-    document.documentElement.setAttribute("data-theme", saved);
-    toggle.textContent = saved === "dark" ? "🌙" : "☀️";
 
+    const toggle  = document.getElementById("themeToggle");
+    const root    = document.documentElement;
+    const STORE   = "qc-theme"; // shared key across all ecosystem sites
+
+    // Detect system preference
+    const sysDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function resolveTheme() {
+      const saved = localStorage.getItem(STORE);
+      if (saved) return saved;                     // explicit user override
+      return sysDark.matches ? "dark" : "light";   // follow system
+    }
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      toggle.textContent = theme === "dark" ? "🌙" : "☀️";
+      toggle.setAttribute("aria-label", theme === "dark" ? "switch to light mode" : "switch to dark mode");
+    }
+
+    // Initial paint
+    applyTheme(resolveTheme());
+
+    // Toggle click — cycle: override opposite → clear override (return to system)
     toggle.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
+      const current = root.getAttribute("data-theme");
+      const sysTheme = sysDark.matches ? "dark" : "light";
       const next = current === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem("theme-iamdeiadora", next);
-      toggle.textContent = next === "dark" ? "🌙" : "☀️";
+
+      if (next === sysTheme) {
+        localStorage.removeItem(STORE);
+      } else {
+        localStorage.setItem(STORE, next);
+      }
+      applyTheme(next);
     });
-    
-   function copyLink(e) {
-  e.preventDefault();
-  navigator.clipboard.writeText('https://iamdeiadora.com').then(() => {
-    const el = document.getElementById('copy-link');
-    el.textContent = 'copied! ✓';
-    setTimeout(() => el.textContent = 'copy link →', 2000);
-  });
-}
+
+    // Follow OS schedule changes if no manual override is set
+    sysDark.addEventListener("change", () => {
+      if (!localStorage.getItem(STORE)) {
+        applyTheme(sysDark.matches ? "dark" : "light");
+      }
+    });
+
+    function copyLink(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText('https://iamdeiadora.com').then(() => {
+        const el = document.getElementById('copy-link');
+        el.textContent = 'copied! ✓';
+        setTimeout(() => el.textContent = 'copy link →', 2000);
+      });
+    }
   </script>
 </body>
 </html>
