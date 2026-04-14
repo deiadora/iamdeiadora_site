@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>quantum currency workshop · step 4 · wave · first cube</title>
+  <meta name="description" content="What potential is sitting unchosen, ungrown? Step 4 of the Quantum Currency Workshop — the financial model canvas through the wave and the first cube." />
+  <link rel="icon" href="/iamdeiadora_favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:        #ebe7dc;
+      --paper:      #0c1516;
+      --card:       #0e171a;
+      --card-lt:    #131f23;
+      --gold:       #ecb02f;
+      --accent:     #7a9e2a;  /* node-4 · wave · first cube · new leaf */
+      --accent-lt:  #9abe42;
+      --accent-dk:  #4a6a10;
+      --teal:       #0f6e56;
+      --teal-lt:    #E1F5EE;
+      --node-1-red: #a9292a;
+      --node-2-ter: #9d4418;
+      --node-3-amb: #c49a3c;
+      --node-7-blu: #1a6b9e;
+      --green-lt:   #EAF3DE;
+      --green-md:   #C0DD97;
+      --amber-lt:   #FAEEDA;
+      --blue-lt:    #E6F1FB;
+      --coral-lt:   #FCEAEA;
+      --terra-lt:   #FAECE7;
+      --purple-lt:  #EEEDFE;
+      --muted:      #cbc6ba;
+      --line:       rgba(240,237,230,.1);
+      --line-solid: rgba(240,237,230,.18);
+      --r:          8px;
+      --serif:      'Exo 2', system-ui, sans-serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --display:    'Cormorant Garamond', Georgia, serif;
+    }
+
+    [data-theme="light"] {
+      --ink:        #1a1814;
+      --paper:      #f4f2ec;
+      --card:       #fffff2;
+      --card-lt:    #e8e2d6;
+      --gold:       #8B5E2A;
+      --accent:     #7a9e2a;
+      --accent-dk:  #3a5a08;
+      --muted:      #7a7163;
+      --line:       rgba(26,24,20,.1);
+      --line-solid: rgba(26,24,20,.18);
+      --green-lt:   #d8edcc;
+      --green-md:   #a8cc70;
+      --amber-lt:   #f5e8cc;
+      --blue-lt:    #d8eaf7;
+      --coral-lt:   #f7e0e0;
+      --terra-lt:   #f5ddd5;
+      --purple-lt:  #e4e2f8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background .25s, color .25s;
+    }
+
+    /* ══ NAV ══ */
+    .qc-nav {
+      width: 100%; background: var(--card);
+      border-bottom: 1px solid var(--line-solid);
+      position: sticky; top: 0; z-index: 200;
+    }
+
+    .qc-nav-inner {
+      max-width: 860px; margin: 0 auto; padding: 0 1.5rem;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; height: 52px; gap: 16px;
+    }
+
+    .qc-nav-prev {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--muted);
+      font-size: 12px; font-weight: 400; transition: color .2s;
+    }
+    .qc-nav-prev:hover { color: var(--accent); }
+
+    .qc-nav-centre {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 3px; text-decoration: none;
+    }
+
+    .qc-nav-step-row { display: flex; align-items: center; gap: 8px; }
+
+    .qc-nav-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--green-lt); color: var(--accent-dk);
+      font-size: 11px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif);
+    }
+
+    .qc-nav-name {
+      font-size: 13px; font-weight: 500; color: var(--ink);
+      font-family: var(--serif); letter-spacing: -.01em;
+    }
+
+    .qc-nav-geo { font-size: 11px; color: var(--muted); letter-spacing: .04em; }
+
+    .qc-nav-dots { display: flex; align-items: center; gap: 4px; }
+
+    .qc-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--line-solid); transition: all .2s;
+    }
+    .qc-dot.done { background: var(--teal); opacity: .5; }
+    .qc-dot.active { background: var(--accent); width: 16px; border-radius: 3px; }
+
+    .qc-nav-next {
+      display: flex; align-items: center; justify-content: flex-end;
+      gap: 8px; text-decoration: none; color: var(--accent);
+      font-size: 12px; font-weight: 500; transition: gap .2s;
+    }
+    .qc-nav-next:hover { gap: 12px; }
+
+    .qc-home-link {
+      display: block; text-align: center; font-size: 11px;
+      color: var(--muted); letter-spacing: .06em; text-decoration: none;
+      padding: 5px 0; background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      font-family: var(--serif); font-style: italic; transition: color .2s;
+    }
+    .qc-home-link:hover { color: var(--gold); }
+
+    @media (max-width: 560px) {
+      .qc-nav-geo, .qc-nav-dots { display: none; }
+      .qc-nav-inner { grid-template-columns: 36px 1fr 36px; }
+      .qc-nav-prev span:not(.arrow), .qc-nav-next span:not(.arrow) { display: none; }
+    }
+
+    /* ══ PAGE ══ */
+    .page { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+
+    .ws-header { padding: 4rem 0 3rem; border-bottom: 1px solid var(--line); }
+
+    .ws-eyebrow {
+      font-family: var(--serif); font-size: .78rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+
+    .ws-title {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 500; line-height: 1.1; letter-spacing: -.02em;
+      color: var(--ink); margin-bottom: .6rem;
+    }
+    .ws-title em { font-style: italic; font-weight: 400; color: var(--accent); }
+
+    .ws-sub {
+      font-size: 1rem; color: var(--muted);
+      max-width: 520px; line-height: 1.7; font-weight: 300;
+    }
+
+    /* ── tabs ── */
+    .tabs {
+      display: flex; margin: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--line-solid);
+    }
+
+    .tab {
+      font-family: var(--serif); font-size: .88rem; font-weight: 500;
+      color: var(--muted); padding: 10px 20px; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      letter-spacing: .02em; transition: color .2s, border-color .2s;
+      background: none; border-top: none; border-left: none; border-right: none;
+    }
+    .tab:hover { color: var(--ink); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ══ SLIDE ══ */
+    .slide-frame {
+      background: var(--card); border: 1px solid var(--line-solid);
+      border-radius: 16px; padding: 3rem 3.5rem;
+      position: relative; overflow: hidden;
+    }
+
+    .slide-frame::before {
+      content: '⬡';
+      position: absolute; top: -20px; right: 10px;
+      font-size: 210px; color: var(--accent);
+      opacity: .05; line-height: 1; pointer-events: none;
+    }
+
+    .slide-content { position: relative; z-index: 1; }
+
+    .slide-eyebrow {
+      font-family: var(--serif); font-size: .72rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.2rem;
+    }
+
+    .slide-heading {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 500; line-height: 1.15;
+      color: var(--ink); margin-bottom: .8rem;
+    }
+
+    .slide-body {
+      font-size: .97rem; color: var(--muted);
+      line-height: 1.8; margin-bottom: 1.2rem;
+      font-weight: 300; max-width: 580px;
+    }
+
+    .slide-pull {
+      font-family: var(--display);
+      font-size: 1.3rem; font-weight: 400; font-style: italic;
+      color: var(--ink); border-left: 2px solid var(--accent);
+      padding: 6px 0 6px 20px; margin: 1.6rem 0; line-height: 1.5;
+    }
+
+    .slide-divider { border: none; border-top: 1px solid var(--line); margin: 1.6rem 0; }
+
+    /* canvas preview grid */
+    .canvas-preview {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 6px;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .cp-cell {
+      border-radius: var(--r); padding: 12px 14px;
+      position: relative; overflow: hidden;
+    }
+
+    .cp-cell.wide { grid-column: 1 / -1; }
+
+    .cp-cell .cc-label {
+      font-family: var(--serif); font-size: 10px; font-weight: 600;
+      letter-spacing: .09em; text-transform: uppercase; margin-bottom: 4px;
+    }
+
+    .cp-cell .cc-desc {
+      font-size: 11px; line-height: 1.5; font-weight: 300;
+    }
+
+    .cc-revenue  { background: var(--green-lt); }
+    .cc-revenue .cc-label { color: #3B6D11; }
+    .cc-revenue .cc-desc  { color: #3B6D11; }
+
+    .cc-costs    { background: var(--coral-lt); }
+    .cc-costs .cc-label { color: var(--node-1-red); }
+    .cc-costs .cc-desc  { color: var(--node-1-red); }
+
+    .cc-personal { background: var(--amber-lt); }
+    .cc-personal .cc-label { color: #633806; }
+    .cc-personal .cc-desc  { color: #854F0B; }
+
+    .cc-unchosen { background: var(--blue-lt); }
+    .cc-unchosen .cc-label { color: #185FA5; }
+    .cc-unchosen .cc-desc  { color: #185FA5; }
+
+    .cc-irred    { background: var(--terra-lt); }
+    .cc-irred .cc-label { color: #712B13; }
+    .cc-irred .cc-desc  { color: #993C1D; }
+
+    .cc-engine   { background: var(--green-lt); border: 1px solid var(--green-md); }
+    .cc-engine .cc-label { color: #27500A; }
+    .cc-engine .cc-desc  { color: #3B6D11; }
+
+    .slide-question {
+      font-family: var(--display); font-size: 1.2rem; font-weight: 500;
+      color: var(--ink); text-align: center; margin-bottom: 6px;
+    }
+    .slide-note { font-size: 12px; color: var(--muted); text-align: center; font-style: italic; }
+
+    /* ══ GO DEEPER ══ */
+    .fac-section { margin-bottom: 2.5rem; }
+
+    .fac-label {
+      font-family: var(--serif); font-size: .72rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 10px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fac-body {
+      font-size: .97rem; color: var(--muted);
+      line-height: 1.8; font-weight: 300;
+    }
+    .fac-body strong { color: var(--ink); font-weight: 500; }
+
+    .signal-card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--r); padding: 12px 14px; margin-bottom: 8px;
+    }
+    .signal-soil {
+      font-family: var(--serif); font-size: 12px; font-weight: 600;
+      margin-bottom: 4px; letter-spacing: .03em;
+    }
+    .signal-text { font-size: .88rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+    .sig-wave    { color: var(--accent-dk); }
+    .sig-frozen  { color: var(--node-7-blu); }
+    .sig-leaking { color: var(--node-2-ter); }
+
+    .insight-block {
+      background: var(--green-lt); border-radius: var(--r); padding: 16px 20px;
+    }
+    .insight-block .fac-body { color: #27500A; }
+    [data-theme="light"] .insight-block .fac-body { color: #27500A; }
+    .insight-block .fac-body strong { color: #173404; }
+
+    /* ══ EXERCISE ══ */
+    .ex-intro {
+      font-size: .97rem; color: var(--muted); line-height: 1.8;
+      margin-bottom: 2.5rem; font-weight: 300;
+      padding: 1.4rem 1.8rem; background: var(--card);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 var(--r) var(--r) 0;
+    }
+    .ex-intro strong { color: var(--ink); font-weight: 500; }
+
+    .ex-block { margin-bottom: 2.5rem; }
+
+    .ex-q-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+
+    .ex-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--green-lt); color: var(--accent-dk);
+      font-size: 11px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-family: var(--serif);
+    }
+
+    .ex-q {
+      font-family: var(--serif); font-size: 1.05rem;
+      font-weight: 600; color: var(--ink); letter-spacing: -.01em;
+    }
+
+    .ex-sub {
+      font-size: .9rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 14px; padding-left: 36px; font-weight: 300;
+    }
+
+    /* canvas builder — full-width grid */
+    .canvas-builder {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-left: 36px;
+      margin-bottom: 10px;
+    }
+
+    .canvas-builder .cb-wide { grid-column: 1 / -1; }
+
+    @media (max-width: 600px) {
+      .canvas-builder { grid-template-columns: 1fr; margin-left: 0; }
+      .canvas-builder .cb-wide { grid-column: auto; }
+    }
+
+    .cb-cell {
+      background: var(--card); border: 1px solid var(--line-solid);
+      border-radius: var(--r); padding: 14px;
+    }
+
+    .cb-label {
+      font-family: var(--serif); font-size: 12px; font-weight: 600;
+      margin-bottom: 4px; letter-spacing: .02em;
+    }
+
+    .cbl-revenue  { color: #3B6D11; }
+    .cbl-costs    { color: var(--node-1-red); }
+    .cbl-personal { color: #633806; }
+    .cbl-unchosen { color: #185FA5; }
+    .cbl-irred    { color: #712B13; }
+    .cbl-engine   { color: #27500A; }
+
+    .cb-hint {
+      font-size: 11px; color: var(--muted);
+      font-style: italic; line-height: 1.5; margin-bottom: 10px;
+    }
+
+    .write-field {
+      width: 100%; background: var(--paper);
+      border: 1px solid var(--line-solid); border-radius: 6px;
+      padding: 10px 12px; font-family: var(--sans); font-size: .88rem;
+      color: var(--ink); line-height: 1.6;
+      resize: vertical; min-height: 80px;
+      transition: border-color .2s; -webkit-appearance: none;
+    }
+    .write-field::placeholder { color: var(--muted); opacity: .6; font-style: italic; }
+    .write-field:focus { outline: none; border-color: var(--accent); }
+
+    .write-field-lg {
+      min-height: 110px; margin-left: 36px;
+      width: calc(100% - 36px);
+    }
+
+    .ex-reflection {
+      background: var(--card); border-left: 2px solid var(--accent);
+      border-radius: 0 var(--r) var(--r) 0;
+      padding: 1.6rem 2rem; margin-top: 2rem;
+    }
+
+    .refl-label {
+      font-family: var(--serif); font-size: .72rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+
+    .refl-q {
+      font-size: .95rem; color: var(--muted);
+      line-height: 1.8; margin-bottom: 10px; font-weight: 300;
+    }
+    .refl-q:last-child { margin: 0; }
+    .refl-q strong { color: var(--ink); font-weight: 500; }
+
+    /* ── footer ── */
+    .ws-footer {
+      margin-top: 5rem; padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: .6rem;
+      font-size: .82rem; color: var(--muted);
+      font-family: var(--serif); font-style: italic;
+    }
+    .ws-footer a { color: var(--gold); text-decoration: none; }
+    .ws-footer a:hover { opacity: .75; }
+
+    /* ══ PRINT ══ */
+    @media print {
+      @page { margin: 2cm 2.5cm; }
+      .qc-nav, .qc-home-link, .tabs { display: none !important; }
+      body { background: #fff !important; color: #1a1814 !important; font-size: 11pt; }
+      .page { max-width: 100%; padding: 0; }
+      .ws-header { padding: 0 0 1.5rem; border-bottom: 1pt solid #ccc; }
+      .ws-title { font-size: 26pt; color: #1a1814 !important; }
+      .panel { display: block !important; page-break-inside: avoid; }
+      .panel + .panel { margin-top: 2rem; padding-top: 2rem; border-top: 1pt solid #ccc; }
+      .slide-frame { background: #f9f8f4 !important; border: 1pt solid #ccc !important; border-radius: 0 !important; padding: 1.5rem !important; }
+      .slide-frame::before { display: none; }
+      .slide-pull { border-left: 2pt solid #555 !important; color: #1a1814 !important; }
+      .cp-cell { border: 1pt solid #ccc !important; background: #f5f5f0 !important; }
+      .cc-revenue .cc-label, .cc-costs .cc-label, .cc-personal .cc-label,
+      .cc-unchosen .cc-label, .cc-irred .cc-label, .cc-engine .cc-label { color: #1a1814 !important; }
+      .ex-intro { background: #f5f5f0 !important; border-left: 2pt solid #555 !important; }
+      .write-field, .write-field-lg { border: 1pt solid #aaa !important; background: #fff !important; min-height: 2.5cm !important; color: #1a1814 !important; }
+      .cb-cell { border: 1pt solid #ccc !important; background: #f9f8f4 !important; }
+      .ex-reflection { border-left: 2pt solid #555 !important; background: #f5f5f0 !important; }
+      .signal-card { border: 1pt solid #ccc !important; background: #f9f8f4 !important; }
+      .insight-block { background: #d8edcc !important; }
+      .ws-footer { border-top: 1pt solid #ccc; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .ws-header .ws-eyebrow { animation: fadeUp .4s ease both; animation-delay: .05s; }
+    .ws-header .ws-title   { animation: fadeUp .4s ease both; animation-delay: .12s; }
+    .ws-header .ws-sub     { animation: fadeUp .4s ease both; animation-delay: .18s; }
+  </style>
+</head>
+<body>
+
+  <nav class="qc-nav" aria-label="Quantum Currency workshop navigation">
+    <div class="qc-nav-inner">
+      <a href="https://quantummagic.ai/workshop" class="qc-nav-prev" aria-label="Previous: Step 3 Discernment">
+        <span class="arrow">←</span>
+        <span>Discernment</span>
+      </a>
+
+      <a href="https://deiadora.com/workshop" class="qc-nav-centre" aria-label="Workshop home">
+        <div class="qc-nav-step-row">
+          <div class="qc-nav-num">4</div>
+          <span class="qc-nav-name">Wave · First cube</span>
+        </div>
+        <span class="qc-nav-geo">iamdeiadora.com · step 4 of 10</span>
+        <div class="qc-nav-dots">
+          <div class="qc-dot done"></div>
+          <div class="qc-dot done"></div>
+          <div class="qc-dot done"></div>
+          <div class="qc-dot done"></div>
+          <div class="qc-dot active"></div>
+          <div class="qc-dot"></div><div class="qc-dot"></div>
+          <div class="qc-dot"></div><div class="qc-dot"></div>
+          <div class="qc-dot"></div>
+        </div>
+      </a>
+
+      <!-- future anchor: pending — update href when Step 5 is live at rebelevolve.com/workshop -->
+      <a href="https://rebelevolve.com/workshop" class="qc-nav-next" aria-label="Next: Step 5 Direction">
+        <span>Direction</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </nav>
+
+  <a class="qc-home-link" href="https://deiadora.com/workshop">↩ quantum currency workshop · return to step 0</a>
+
+  <main class="page">
+
+    <header class="ws-header">
+      <p class="ws-eyebrow">Quantum currency workshop · step 4 of 10</p>
+      <h1 class="ws-title">What potential is sitting here,<br><em>unchosen and ungrown?</em></h1>
+      <p class="ws-sub">The first cube holds all faces simultaneously — potential before the wave collapses into a single direction. The financial model canvas maps the full architecture of this system before any future is chosen.</p>
+    </header>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" role="tab" aria-selected="true"  onclick="showPanel('slide', this)">Slide</button>
+      <button class="tab"        role="tab" aria-selected="false" onclick="showPanel('deeper', this)">Go deeper</button>
+      <button class="tab"        role="tab" aria-selected="false" onclick="showPanel('exercise', this)">Playbook exercise</button>
+    </div>
+
+    <!-- ══ SLIDE ══ -->
+    <div id="panel-slide" class="panel active" role="tabpanel">
+      <div class="slide-frame">
+        <div class="slide-content">
+          <p class="slide-eyebrow">Quantum currency workshop · step 4 · wave · first cube</p>
+          <h2 class="slide-heading">The canvas before the choice.<br>All faces present. No direction yet committed.</h2>
+          <p class="slide-body">In quantum mechanics, a wave function holds all possible states simultaneously until the moment of observation collapses it into one. The first cube is the geometry of that superposition — six faces, each a different surface of the same system, none yet chosen as primary. The financial model canvas is how you see all six faces at once, before committing to any single future.</p>
+          <p class="slide-pull">"The path never lets the wave collapse into form. What revenue streams, models, or structures has this system been circling without committing?"</p>
+          <p class="slide-body">This is not a business plan. A business plan is a commitment. The canvas is an observation — the full architecture of what this system is and could be, mapped without judgment, before Step 5 chooses a direction. The irreducible problem from Step 3 sits at the centre. Everything else is organised around it.</p>
+          <hr class="slide-divider">
+          <p class="slide-eyebrow" style="margin-bottom:10px;">The canvas — six faces of the financial system</p>
+          <div class="canvas-preview">
+            <div class="cp-cell cc-revenue">
+              <p class="cc-label">Revenue streams</p>
+              <p class="cc-desc">What this system earns and how — current, potential, and dormant.</p>
+            </div>
+            <div class="cp-cell cc-costs">
+              <p class="cc-label">Cost structure</p>
+              <p class="cc-desc">What it costs to operate — fixed, variable, hidden, and personal.</p>
+            </div>
+            <div class="cp-cell cc-personal">
+              <p class="cc-label">Personal layer</p>
+              <p class="cc-desc">The founder's own financial needs and the degree to which they're being met.</p>
+            </div>
+            <div class="cp-cell cc-unchosen">
+              <p class="cc-label">Unchosen potential</p>
+              <p class="cc-desc">Revenue streams circled but not committed to. Models considered but not tested. Superpositions waiting to collapse.</p>
+            </div>
+            <div class="cp-cell cc-irred">
+              <p class="cc-label">The irreducible problem</p>
+              <p class="cc-desc">From Step 3 — the real constraint at the centre of the economic system.</p>
+            </div>
+            <div class="cp-cell cc-engine">
+              <p class="cc-label">The economic engine</p>
+              <p class="cc-desc">The value created, for whom, and why they pay for it. The core of the torus.</p>
+            </div>
+          </div>
+          <p class="slide-question">What is the full shape of this system — including the parts that haven't been looked at directly yet?</p>
+          <p class="slide-note">The canvas is not for polishing. It is for seeing.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GO DEEPER ══ -->
+    <div id="panel-deeper" class="panel" role="tabpanel">
+
+      <div class="fac-section">
+        <p class="fac-label">Why the canvas comes before the scenarios</p>
+        <p class="fac-body">Step 5 will model three futures simultaneously — contraction, steady-state, expansion. But you cannot model futures from an incomplete map of the present. <strong>The canvas is the prerequisite for the scenarios.</strong> A team that skips the canvas and goes straight to futures is optimising without knowing what they're optimising from. The canvas forces honesty about the full architecture — including the unchosen potential and the personal layer that most financial models exclude.</p>
+      </div>
+
+      <div class="fac-section">
+        <p class="fac-label">The unchosen potential face</p>
+        <p class="fac-body">This is the face of the canvas that most teams find most uncomfortable — and most generative. <strong>Unchosen potential is the wave function that has never been observed.</strong> The revenue stream that keeps being mentioned in meetings but never built. The service that clients have asked for repeatedly but the team has been "not ready" to offer. The partnership that would unlock a new model but requires a conversation that keeps being deferred. Mapping the unchosen is not a commitment to pursue it. It is an acknowledgment that the system already knows it is there.</p>
+      </div>
+
+      <div class="fac-section">
+        <p class="fac-label">Canvas signals — what to listen for</p>
+        <div class="signal-card"><p class="signal-soil sig-wave">The wave is present</p><p class="signal-text">The team can name unchosen potential immediately and specifically. There's energy in the room when it's named — not anxiety, but recognition. The canvas feels like seeing the system whole for the first time.</p></div>
+        <div class="signal-card"><p class="signal-soil sig-frozen">The canvas is frozen</p><p class="signal-text">The team can only see current reality — no unchosen potential surfaces. The personal layer is actively resisted or minimised. This is often the signal that the Step 3 irreducible hasn't fully landed yet.</p></div>
+        <div class="signal-card"><p class="signal-soil sig-leaking">The canvas is leaking</p><p class="signal-text">Many revenue streams identified, none fully resourced. Unchosen potential proliferating without constraint. The system is generating ideas faster than it can commit to them. Step 5 will need to apply discernment to the wave before it becomes noise.</p></div>
+      </div>
+
+      <div class="fac-section">
+        <p class="fac-label">The personal layer — why it belongs on the canvas</p>
+        <p class="fac-body">Most business model canvases have no personal layer. This one does — because the torus from Step 1 established that personal and business finances are one system. <strong>A founder who maps a business model without mapping their own financial needs is building a model that may be economically coherent on paper and personally unsustainable in practice.</strong> The personal layer asks: what does the person running this system need to earn to be sustainable — and is the current model capable of generating that, now or at scale?</p>
+      </div>
+
+      <div class="fac-section">
+        <p class="fac-label">What this step tends to produce</p>
+        <div class="insight-block">
+          <p class="fac-body">The most common revelation in Step 4 is that <strong>the unchosen potential is already the answer to the irreducible problem from Step 3.</strong> The revenue stream that hasn't been built is the one that would close the torus. The model that hasn't been committed to is the one that addresses the root. The canvas makes this visible — not by analysis, but by observation. The system already knew. The canvas just made it legible.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ EXERCISE ══ -->
+    <div id="panel-exercise" class="panel" role="tabpanel">
+
+      <div class="ex-intro">
+        Map the full architecture of this system — personal and business together, current and potential, known and unchosen. <strong>Nothing here is a commitment.</strong> The canvas is an act of observation, not planning. Write quickly. The first things that surface are usually the most honest ones.
+      </div>
+
+      <!-- Q1 — the canvas -->
+      <div class="ex-block">
+        <div class="ex-q-row">
+          <div class="ex-num">1</div>
+          <p class="ex-q">The financial model canvas</p>
+        </div>
+        <p class="ex-sub">Map all six faces. Include the personal layer. Include the unchosen. Write from observation — what is actually here, not what should be here.</p>
+        <div class="canvas-builder">
+          <div class="cb-cell">
+            <p class="cb-label cbl-revenue">Revenue streams</p>
+            <p class="cb-hint">Current, recurring, one-off, potential. What does and could this system earn?</p>
+            <textarea class="write-field" rows="5" placeholder="Write here…" aria-label="Revenue streams"></textarea>
+          </div>
+          <div class="cb-cell">
+            <p class="cb-label cbl-costs">Cost structure</p>
+            <p class="cb-hint">Fixed, variable, hidden. What leaves the system — including costs paid personally for the business.</p>
+            <textarea class="write-field" rows="5" placeholder="Write here…" aria-label="Cost structure"></textarea>
+          </div>
+          <div class="cb-cell">
+            <p class="cb-label cbl-personal">Personal layer</p>
+            <p class="cb-hint">What does the person or people running this system need to earn to be genuinely sustainable?</p>
+            <textarea class="write-field" rows="5" placeholder="Write here…" aria-label="Personal layer"></textarea>
+          </div>
+          <div class="cb-cell">
+            <p class="cb-label cbl-unchosen">Unchosen potential</p>
+            <p class="cb-hint">Revenue streams circled but not built. Models considered but not committed to. What the system keeps returning to without acting on.</p>
+            <textarea class="write-field" rows="5" placeholder="Write here…" aria-label="Unchosen potential"></textarea>
+          </div>
+          <div class="cb-cell">
+            <p class="cb-label cbl-irred">The irreducible problem</p>
+            <p class="cb-hint">From Step 3 — write it here exactly as named. This is the centre of the canvas.</p>
+            <textarea class="write-field" rows="5" placeholder="Paste or rewrite from Step 3…" aria-label="Irreducible problem"></textarea>
+          </div>
+          <div class="cb-cell">
+            <p class="cb-label cbl-engine">The economic engine</p>
+            <p class="cb-hint">The value created, for whom, and why they pay for it. The core of the torus in one or two sentences.</p>
+            <textarea class="write-field" rows="5" placeholder="Write here…" aria-label="Economic engine"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="ex-block">
+        <div class="ex-q-row">
+          <div class="ex-num">2</div>
+          <p class="ex-q">What the canvas reveals</p>
+        </div>
+        <p class="ex-sub">Look at all six faces together. What do you see that you couldn't see before mapping it? What surprised you? What has been invisible until now?</p>
+        <textarea class="write-field write-field-lg" rows="4" placeholder="Write here…" aria-label="Canvas reveals"></textarea>
+      </div>
+
+      <!-- Q3 -->
+      <div class="ex-block">
+        <div class="ex-q-row">
+          <div class="ex-num">3</div>
+          <p class="ex-q">The unchosen and the irreducible</p>
+        </div>
+        <p class="ex-sub">Is there a connection between what's sitting unchosen and the irreducible problem from Step 3? Does any of the unchosen potential address the root directly — or make it irrelevant?</p>
+        <textarea class="write-field write-field-lg" rows="4" placeholder="Write here…" aria-label="Unchosen and irreducible"></textarea>
+      </div>
+
+      <!-- Q4 -->
+      <div class="ex-block">
+        <div class="ex-q-row">
+          <div class="ex-num">4</div>
+          <p class="ex-q">What is the system ready to choose?</p>
+        </div>
+        <p class="ex-sub">Not a commitment yet — Step 5 is where direction gets chosen. But notice: is there something on the canvas that feels like it's already been chosen, just not named yet? What does the system already know it wants to do?</p>
+        <textarea class="write-field write-field-lg" rows="4" placeholder="Write here…" aria-label="Ready to choose"></textarea>
+      </div>
+
+      <div class="ex-reflection">
+        <p class="refl-label">The Sower question at step 4</p>
+        <p class="refl-q">Return to the lens: <strong>what kind of ground is this canvas growing in?</strong></p>
+        <p class="refl-q">A canvas mapped in good soil tends to surface the unchosen potential readily — the system is coherent enough to see its own possibilities without defensiveness. A canvas mapped in thorny ground tends to proliferate — every face generates three more, and the unchosen list never ends. If the canvas feels overwhelming rather than clarifying, the discernment step (3) may need to be revisited before Step 5.</p>
+        <p class="refl-q">The wave is present. The cube holds all faces. <strong>Step 5 is where one direction gets chosen — and the others don't disappear. They wait, as superpositions, for the next cycle.</strong> The Wonka elevator can always return.</p>
+      </div>
+
+    </div>
+
+    <footer class="ws-footer">
+      <span>Quantum currency workshop · Deiadora Blanche © 2026</span>
+      <span>Step 4 of 10 · Wave · First cube · <a href="https://iamdeiadora.com">iamdeiadora.com</a></span>
+    </footer>
+
+  </main>
+
+  <script>
+    function showPanel(name, tabEl) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.getElementById('panel-' + name).classList.add('active');
+      tabEl.classList.add('active');
+      tabEl.setAttribute('aria-selected', 'true');
+    }
+
+    const root    = document.documentElement;
+    const STORE   = "qc-theme";
+    const sysDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function resolveTheme() {
+      const saved = localStorage.getItem(STORE);
+      if (saved) return saved;
+      return sysDark.matches ? "dark" : "light";
+    }
+
+    function applyTheme(theme) { root.setAttribute("data-theme", theme); }
+
+    applyTheme(resolveTheme());
+
+    sysDark.addEventListener("change", () => {
+      if (!localStorage.getItem(STORE)) applyTheme(sysDark.matches ? "dark" : "light");
+    });
+
+    document.querySelectorAll('textarea').forEach(ta => {
+      const key = 'qc-s4-' + ta.getAttribute('aria-label');
+      const saved = sessionStorage.getItem(key);
+      if (saved) ta.value = saved;
+      ta.addEventListener('input', () => sessionStorage.setItem(key, ta.value));
+    });
+  </script>
+</body>
+</html>
