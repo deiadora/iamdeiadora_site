@@ -1,8 +1,8 @@
-# iamdeiadora.com · dimension 4 · wave · the cube
+# iamdeiadora.com · dimension 4 · wave · hexahedron
  
-Potential held in form. The cube before the direction is chosen.
+Potential held in form. The hexahedron before the direction is chosen.
 Home of the 13 keys — the trust and credibility layer of the ecosystem.
-Dimension 4 of The Currency Playbook — the financial model canvas.
+Dimension 4 of The Currency Workshop — the geometric movement canvas.
  
 ## part of the deiadora ecosystem
  
